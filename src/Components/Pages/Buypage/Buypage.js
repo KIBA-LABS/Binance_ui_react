@@ -121,7 +121,6 @@ const tableRows = [
 ];
 
 function Buypage() {
-  console.log("buypage");
   //const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
