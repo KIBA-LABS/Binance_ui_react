@@ -1,0 +1,19 @@
+.arrow {
+  position: relative;
+  width: 30px;
+  margin: 20px auto;
+  height: 0;
+  border-bottom: 20px solid #fcd535;
+}
+
+.arrow::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #fcd535;
+  position: absolute;
+  right: 30px;
+  top: 0px;
+}
