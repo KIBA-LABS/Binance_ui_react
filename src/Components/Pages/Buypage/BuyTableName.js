@@ -44,7 +44,9 @@ function BuyTableName(props) {
               <span style={{ fontSize: "11px" }}>Limit</span>
             </Col>
             <Col xs={9}>
-              <span style={{ fontSize: "14px" }}>{props.data.Trade}</span>
+              <span style={{ fontSize: "14px" }}>
+                {props.data.atl_change_percentage}
+              </span>
             </Col>
           </Row>
         </Col>
