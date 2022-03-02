@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Rows, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@material-ui/core";
-//import BuyTableName from "./BuyTableName";
+
 import { Tabs, Tab } from "@material-ui/core";
 import { useState } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,7 +10,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import BuyTableName from "./BuyTableName";
 import Form from "react-bootstrap/Form";
-
+import { useEffect } from "react";
+import axios from "axios";
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -47,86 +48,29 @@ const tabStyle = {
     fontSize: 15,
   },
 };
-const tableRows = [
-  {
-    Advertiser: "BTC",
-    Price: "247,0826",
-    Limit: "0.00456963",
-    Payment: "0.00000000000",
-    id: "111",
-    Trade: "Bitcoin",
-    orders: "35678",
-    Available: 457890,
-  },
-  {
-    Advertiser: "BTC",
-    Price: "247,0826",
-    Limit: "0.00456963",
-    Payment: "0.00",
-    id: "111",
-    Trade: "Bitcoin",
-    orders: "35678",
-    Available: 457890,
-  },
-  {
-    Advertiser: "BTC",
-    Price: "247,0826",
-    Limit: "0.00456963",
-    Payment: "0.00000000000",
-    id: "111",
-    Trade: "Bitcoin",
-    orders: "35678",
-    Available: 457890,
-  },
-  {
-    Advertiser: "BTC",
-    Price: "247,0826",
-    Limit: "0.00456963",
-    Payment: "0.00000000000",
-    id: "111",
-    Trade: "Bitcoin",
-    orders: "35678",
-    Available: 457890,
-  },
-  {
-    Advertiser: "BTC",
-    Price: "247,0826",
-    Limit: "0.00456963",
-    Payment: "0.00000000000",
-    id: "111",
-    Trade: "Bitcoin",
-    orders: "35678",
-    Available: 457890,
-  },
-  {
-    Advertiser: "BTC",
-    Price: "247,0826",
-    Limit: "0.00456963",
-    Payment: "0.00000000000",
-    id: "111",
-    Trade: "Bitcoin",
-    orders: "35678",
-    Available: 457890,
-  },
-  {
-    Advertiser: "BTC",
-    Price: "247,0826",
-    Limit: "0.00456963",
-    Payment: "0.00000000000",
-    id: "111",
-    Trade: "Bitcoin",
-    orders: "35678",
-    Available: 457890,
-  },
-];
 
 function Buypage() {
+  const classes = useStyles();
+  const initialList = [];
+  const [tableDatas, setList] = React.useState(initialList);
+
+  const fetchHistory = async () => {
+    const { data } = await axios.get(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+    );
+    console.log(data);
+    setList(data);
+  };
+
   //const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  useEffect(() => {
+    fetchHistory();
+  }, []);
   return (
     <div
       style={{
@@ -248,36 +192,7 @@ function Buypage() {
           </Tabs>
         </div>
       </div>
-      {/* <div>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          value="10"
-          style={{ width: "150px", textAlign: "center" }}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>CNY</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </div>
-      <div>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          value="10"
-          style={{ width: "150px", textAlign: "center" }}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>All Payments</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </div> */}
+
       <Row>
         <Row style={{ marginLeft: "90px" }}>
           Flat<Col style={{ marginLeft: "180px" }}>Payment</Col>
@@ -331,15 +246,11 @@ function Buypage() {
           <Col xs={3}>Price</Col>
           <Col xs={3}>Limit/Available</Col>
           <Col xs={2}>Payment</Col>
-          <Col xs={1}>Trade</Col>
-          <Col xs={1}>
-            <span style={{ backgroundColor: "lightgreen" }}> o fee</span>
-          </Col>
+          <Col xs={2}>Trade</Col>
         </Row>
-        {/* {/ <BuyTableName></BuyTableName> /} */}
       </div>
       <ul id="list" style={{ listStyle: "none" }}>
-        {tableRows.map((value) => {
+        {tableDatas.map((value) => {
           return (
             <li key={value.id}>
               <BuyTableName data={value}></BuyTableName>

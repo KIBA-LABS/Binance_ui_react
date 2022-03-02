@@ -18,90 +18,41 @@ import Tablerow from "../TableviewPage/Tablerow";
 //import Search from "@material-ui/icons/Search";
 import ShopIcon from "@material-ui/icons/Shop";
 import Search from "./Search";
+import { makeStyles } from "@material-ui/styles";
+import { Box } from "@material-ui/core";
+import { useEffect } from "react";
+import axios from "axios";
+const useStyles = makeStyles(() => ({
+  row: {
+    backgroundColor: "16171a",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#131111",
+    },
+    fontFamily: "Montserrat",
+  },
+  pagination: {
+    "&.MuiPaginationItem-root": {
+      color: "gold",
+    },
+  },
+}));
 
 function Funding() {
-  const tableRows = [
-    {
-      Name: "BTC",
-      LastPrice: "0.00456963",
-      Change: "0.00456963",
-      Markets: "0.00000000000",
-      id: "111",
-      image: "bitcoin.png",
-      subTitle: "Bitcoin",
-      Action: "Buy/Sell Send Receive ...",
-    },
-    {
-      Name: "ETH",
-      LastPrice: "0.004579367",
-      Change: "0.0006655445567",
-      Markets: "0.00000000000",
-      id: "112",
-      image: "ethereum.png",
-      subTitle: "Ethereum",
-      Action: "Buy/Sell Send Receive ...",
-    },
-    {
-      Name: "BNB",
-      LastPrice: "0.00456963",
-      Change: "0.00456963",
-      Markets: "0.00000000000",
-      id: "113",
-      image: "bnb.png",
-      subTitle: "BNB",
-      Action: "Buy/Sell Send Receive ...",
-    },
-    {
-      Name: "ADA",
-      LastPrice: "0.00456963",
-      Change: "0.00456963",
-      Markets: "0.00000000000",
-      id: "114",
-      image: "cardano.png",
-      subTitle: "Cardano",
-      Action: "Buy/Sell Send Receive ...",
-    },
-    {
-      Name: "SOL",
-      LastPrice: "0.00456963",
-      Change: "0.00456963",
-      Markets: "0.00000000000",
-      id: "115",
-      image: "solana.png",
-      subTitle: "Solana",
-      Action: "Buy/Sell Send Receive ...",
-    },
-    {
-      Name: "SHIB",
-      LastPrice: "0.00456963",
-      Change: "0.00456963",
-      Markets: "0.00000000000",
-      id: "116",
-      image: "shiba-inu.png",
-      subTitle: "Shib-inu",
-      Action: "Buy/Sell Send Receive ...",
-    },
-    {
-      Name: "BTC",
-      LastPrice: "0.00456963",
-      Change: "0.00456963",
-      Markets: "0.00000000000",
-      id: "112",
-      image: "bitcoin.png",
-      subTitle: "Bitcoin",
-      Action: "Buy/Sell Send Receive ...",
-    },
-    {
-      Name: "BTC",
-      LastPrice: "0.00456963",
-      Change: "0.00456963",
-      Markets: "0.00000000000",
-      id: "112",
-      image: "coin.png",
-      subTitle: "Bitcoin",
-      Action: "Buy/Sell Send Receive ...",
-    },
-  ];
+  const classes = useStyles();
+  const initialList = [];
+  const [tableDatas, setList] = React.useState(initialList);
+
+  const fetchHistory = async () => {
+    const { data } = await axios.get(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+    );
+    console.log(data);
+    setList(data);
+  };
+  useEffect(() => {
+    fetchHistory();
+  }, []);
   return (
     <Row style={{ marginTop: "25px" }}>
       <Col xs={2}>
@@ -169,27 +120,19 @@ function Funding() {
               <span style={{ color: "grey" }}> ~ $347.73</span>
             </h4>
           </Col>
-          {/* <Col xs={2}>
-            <ShopIcon></ShopIcon>
-          </Col>
-          <Col xs={2}>
-            <ShopIcon></ShopIcon>
-          </Col>
-          <Col xs={2}>
-            <ShopIcon></ShopIcon>
-          </Col> */}
+       
         </Row>
         <Row>
           <Col xs={3}>
             {" "}
-            <box
+            <Box
               style={{
                 color: "grat",
                 marginLeft: "90px",
               }}
             >
               <Search />
-            </box>{" "}
+            </Box>{" "}
           </Col>
           &nbsp; &nbsp; &nbsp; &nbsp;
           <Col xs={3}>
@@ -202,8 +145,7 @@ function Funding() {
           <Col>
             <TableContainer>
               <Table
-                // sx={{ minWidth: "650" }}
-                //style={{ marginLeft: "17%" }}
+                
                 style={{ width: "90%", marginTop: "10px", marginLeft: "50px" }}
               >
                 <TableHead>
@@ -247,7 +189,7 @@ function Funding() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {tableRows.map((viewTable) => {
+                  {tableDatas.map((viewTable) => {
                     return (
                       <Tablerow key={viewTable.id} data={viewTable}></Tablerow>
                     );

@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 import { OrdersHistory } from "../../../config/Api";
 import OrderTableRow2 from "./OrderTableRow2";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -59,7 +58,7 @@ const CoinTable = () => {
 
   const fetchHistory = async () => {
     const { data } = await axios.get(
-      "https://6207460e92dd6600171c0d48.mockapi.io/api/orders/orders"
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false"
     );
     console.log(data);
     setList(data);

@@ -5,8 +5,6 @@ import { TableRow, TableCell } from "@material-ui/core";
 import FundingTableName from "./FundingTableName";
 
 function FundingTablerow(props) {
-  //const row = { Name: "sonali", LastPrice: "1", Change: "13", Markets: "123" };
-  //console.log(props);
   const nameData = {
     Title: props.data.Name,
     Image: props.data.image,

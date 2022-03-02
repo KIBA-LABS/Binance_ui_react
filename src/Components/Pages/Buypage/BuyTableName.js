@@ -14,7 +14,7 @@ function BuyTableName(props) {
         style={{
           backgroundColor: "white",
           height: "80px",
-          // margin: "auto",
+
           marginLeft: "50px",
           marginRight: "50px",
         }}
@@ -24,11 +24,11 @@ function BuyTableName(props) {
             <span style={{ color: "blue" }}>{props.data.Advertiser}</span>
           </Row>
           <Row>
-            <span style={{ color: "grey" }}>{props.data.Price} </span>
+            <span style={{ color: "grey" }}>{props.data.high_24h} </span>
           </Row>
         </Col>
         <Col xs={3}>
-          {props.data.Price} <span style={{ fontSize: "10px" }}>CNY</span>
+          {props.data.max_supply} <span style={{ fontSize: "10px" }}>CNY</span>
         </Col>
         <Col xs={3}>
           <Row>

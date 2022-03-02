@@ -32,22 +32,22 @@ function OrderTableRow2(props) {
           style={{ backgroundColor: "white", height: "70px", margin: "auto" }}
         >
           <Col xs={2} style={{ alignSelf: "center" }}>
-            {props.data.coinName}
+            {props.data.name}
           </Col>
           <Col xs={2} style={{ alignSelf: "center" }}>
-            {props.data.firstAmount} INR
+            {props.data.current_price} INR
           </Col>
           <Col xs={2} style={{ alignSelf: "center" }}>
-            {props.data.price}
+            {props.data.price_change_24h}INR
           </Col>
           <Col xs={2} style={{ alignSelf: "center" }}>
-            {props.data.cryptoAmount} BTC
+            {props.data.circulating_supply}
           </Col>
           <Col xs={2} style={{ alignSelf: "center", color: "#2AA4E7" }}>
-            <u>{props.data.cryptoParty}</u>
+            <u>{props.data.cryptoParty}sonali</u>
           </Col>
           <Col xs={1} style={{ alignSelf: "center" }}>
-            {props.data.status}
+            {props.data.status}Completed
           </Col>
           <Col xs={1} style={{ alignSelf: "center", color: "#EAA91E" }}>
             Contact

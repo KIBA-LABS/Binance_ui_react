@@ -4,16 +4,14 @@ import TableNameCell from "./TableNameCell";
 import SmallGraph from "./SmallGraph";
 
 function Tablerow(props) {
-  //const row = { Name: "sonali", LastPrice: "1", Change: "13", Markets: "123" };
-  //console.log(props);
   const nameData = {
-    Title: props.data.Name,
+    Title: props.data.name,
     Image: props.data.image,
-    SubTitle: props.data.subTitle,
+    SubTitle: props.data.symbol,
   };
   return (
     <TableRow
-      style={{fontSize:"12px"}}
+      style={{ fontSize: "12px" }}
       key={props.data.id}
       sx={{
         "&:last-child td, &:last-child th": { border: 0, display: "inline" },
@@ -26,21 +24,20 @@ function Tablerow(props) {
         align="right"
         style={{ borderBottom: "none", fontSize: "18px" }}
       >
-      {props.data.LastPrice}
+        {props.data.market_cap}
       </TableCell>
-      <TableCell
-        align="right"
-      >
-        {props.data.Change}
+      <TableCell align="right">{props.data.market_cap_change_24h}</TableCell>
+      <TableCell align="right" style={{ borderBottom: "none" }}>
+        {props.data.total_supply}
       </TableCell>
       <TableCell align="right" style={{ borderBottom: "none" }}>
-      {props.data.Markets}
+        {props.datahigh_24h}
       </TableCell>
       <TableCell align="right" style={{ borderBottom: "none" }}>
-      {props.data.Change}
+        {props.data.total_supply}
       </TableCell>
       <TableCell align="right" style={{ borderBottom: "none" }}>
-        <span style={{color:"orange"}}>Buy/Sell  Send  Receive</span>  ...
+        <span style={{ color: "orange" }}>Buy/Sell Send Receive</span> ...
       </TableCell>
     </TableRow>
   );
