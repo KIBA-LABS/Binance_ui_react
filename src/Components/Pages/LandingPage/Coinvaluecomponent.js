@@ -14,27 +14,29 @@ function Coinvaluecomponent(props) {
   console.log(props);
   return (
     <div>
-      <Container style={{ marginLeft: "40px", marginTop:"20px", border:"none" }}>
-        <Card style={{ border:"none"}}>
+      <Container
+        style={{ marginLeft: "40px", marginTop: "20px", border: "none" }}
+      >
+        <Card style={{ border: "none" }}>
           <CardBody>
             <Row>
               <CardTitle tag="h6" style={{ height: "5px" }}>
-              {props.data.title}
-            </CardTitle>
+                {props.data.title}
+              </CardTitle>
             </Row>
             <Row>
-            <CardSubtitle
-              className="mb-2 text-muted"
-              tag="h3"
-              style={{ height: "10px", marginTop:"15px" }}
-            >
-              {props.data.subTitle}
-            </CardSubtitle>
+              <CardSubtitle
+                className="mb-2 text-muted"
+                tag="h3"
+                style={{ height: "10px", marginTop: "15px" }}
+              >
+                {props.data.subTitle}
+              </CardSubtitle>
             </Row>
             <Row>
-            <CardText tag="h6"  style={{ height: "10px", marginTop:"35px" }}>{props.data.price}</CardText>
-
-
+              <CardText tag="h6" style={{ height: "10px", marginTop: "35px" }}>
+                {props.data.price}
+              </CardText>
             </Row>
           </CardBody>
         </Card>

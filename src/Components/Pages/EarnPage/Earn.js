@@ -4,225 +4,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { map } from "highcharts";
 
 import CryptoGraph from "../Ethereumpage/CryptoGraph";
+import axios from "axios";
+import { useEffect } from "react";
+import { makeStyles } from "@material-ui/styles";
 //import Search from "../Fundingpage/Search";
 import Search from "./Search";
 function Earn() {
-  const tableDatas = [
-    {
-      Price: "3776031",
-      Amount: "0.00132",
-      Total: "49.84361",
-      id: "1",
-    },
-    {
-      Price: "3776031",
-      Amount: "0.00132",
-      Total: "49.84361",
-      id: "1",
-    },
-    {
-      Price: "3776031",
-      Amount: "0.00132",
-      Total: "49.84361",
-      id: "1",
-    },
-    {
-      Price: "3776031",
-      Amount: "0.00132",
-      Total: "49.84361",
-      id: "1",
-    },
-    {
-      Price: "3776031",
-      Amount: "0.00132",
-      Total: "49.84361",
-      id: "1",
-    },
-    {
-      Price: "3776031",
-      Amount: "0.00132",
-      Total: "49.84361",
-      id: "1",
-    },
-    {
-      Price: "3776031",
-      Amount: "0.00132",
-      Total: "49.84361",
-      id: "1",
-    },
-    {
-      Price: "3776031",
-      Amount: "0.00132",
-      Total: "49.84361",
-      id: "1",
-    },
-  ];
-  const tableDatasTwo = [
-    {
-      Pair: "3578900",
-      Price: "27839300",
-      Change: "63637389",
-    },
-    {
-      Pair: "3578900",
-      Price: "27839300",
-      Change: "63637389",
-    },
-    {
-      Pair: "3578900",
-      Price: "27839300",
-      Change: "63637389",
-    },
-    {
-      Pair: "3578900",
-      Price: "27839300",
-      Change: "63637389",
-    },
-    {
-      Pair: "3578900",
-      Price: "27839300",
-      Change: "63637389",
-    },
-    {
-      Pair: "3578900",
-      Price: "27839300",
-      Change: "63637389",
-    },
-    {
-      Pair: "3578900",
-      Price: "27839300",
-      Change: "63637389",
-    },
-    {
-      Pair: "3578900",
-      Price: "27839300",
-      Change: "63637389",
-    },
-  ];
-  const tableDatasThree = [
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-    {
-      list1: "568.678",
-      list2: "6788.67",
-      More: "25430.6778",
-    },
-  ];
-  const tableDatasFour = [
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-    {
-      Price: "567.388399",
-      Amount: "648499",
-      Time: "21:00:00",
-    },
-  ];
+  //const classes = useStyles();
+  const initialList = [];
+  const [tableDatas, setList] = React.useState(initialList);
+
+  const fetchHistory = async () => {
+    const { data } = await axios.get(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=20&page=1&sparkline=false"
+    );
+    console.log(data);
+    setList(data);
+  };
+  useEffect(() => {
+    fetchHistory();
+  }, []);
+
   return (
     <Row style={{ margin: "20px" }}>
       <Row>
@@ -283,10 +85,10 @@ function Earn() {
                     <li>
                       <Row>
                         <Col xs={4} style={{ color: "red" }}>
-                          {value.Price}
+                          {value.current_price}
                         </Col>
-                        <Col xs={4}>{value.Amount}</Col>
-                        <Col xs={4}>{value.Total}</Col>
+                        <Col xs={4}>{value.high_24h}</Col>
+                        <Col xs={4}>{value.total_supply}</Col>
                       </Row>
                     </li>
                   );
@@ -300,15 +102,15 @@ function Earn() {
             </Row>
             <Row style={{ paddingRight: "0px" }}>
               <ul style={{ listStyle: "none", paddingRight: "0px" }}>
-                {tableDatasThree.map((value) => {
+                {tableDatas.map((value) => {
                   return (
                     <li>
                       <Row>
                         <Col xs={4} style={{ color: "green" }}>
-                          {value.list1}
+                          {value.market_cap_change_percentage_24h}
                         </Col>
-                        <Col xs={4}>{value.list2}</Col>
-                        <Col xs={4}>{value.More}</Col>
+                        <Col xs={4}>{value.low_24h}</Col>
+                        <Col xs={4}>{value.total_supply}</Col>
                       </Row>
                     </li>
                   );
@@ -329,14 +131,14 @@ function Earn() {
             </Row>
             <Row style={{ paddingRight: "0px" }}>
               <ul style={{ listStyle: "none", paddingRight: "0px" }}>
-                {tableDatasTwo.map((value) => {
+                {tableDatas.map((value) => {
                   return (
                     <li>
                       <Row>
-                        <Col xs={4}>{value.Pair}</Col>
-                        <Col xs={4}>{value.Price}</Col>
+                        <Col xs={4}>{value.ath}</Col>
+                        <Col xs={4}>{value.atl}</Col>
                         <Col xs={4} style={{ color: "green" }}>
-                          {value.Change}
+                          {value.atl_change_percentage}
                         </Col>
                       </Row>
                     </li>
@@ -357,7 +159,7 @@ function Earn() {
             </Row>
             <Row style={{ paddingRight: "0px" }}>
               <ul style={{ listStyle: "none", paddingRight: "0px" }}>
-                {tableDatasFour.map((value) => {
+                {tableDatas.map((value) => {
                   return (
                     <li>
                       <Row>
