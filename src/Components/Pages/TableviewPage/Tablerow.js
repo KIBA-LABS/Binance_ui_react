@@ -2,8 +2,10 @@ import React from "react";
 import { TableRow, TableCell } from "@material-ui/core";
 import TableNameCell from "./TableNameCell";
 import SmallGraph from "./SmallGraph";
+import { useHistory } from "react-router-dom";
 
 function Tablerow(props) {
+  const history = useHistory();
   const nameData = {
     Title: props.data.name,
     Image: props.data.image,
@@ -26,18 +28,26 @@ function Tablerow(props) {
       >
         {props.data.market_cap}
       </TableCell>
-      <TableCell align="right">{props.data.market_cap_change_24h}</TableCell>
+      <TableCell align="right">{props.data.price_change_24h}</TableCell>
       <TableCell align="right" style={{ borderBottom: "none" }}>
         {props.data.total_supply}
       </TableCell>
       <TableCell align="right" style={{ borderBottom: "none" }}>
         {props.datahigh_24h}
       </TableCell>
-      <TableCell align="right" style={{ borderBottom: "none" }}>
+      {/* <TableCell align="right" style={{ borderBottom: "none" }}>
         {props.data.total_supply}
-      </TableCell>
+      </TableCell> */}
       <TableCell align="right" style={{ borderBottom: "none" }}>
-        <span style={{ color: "orange" }}>Buy/Sell Send Receive</span> ...
+        <span
+          style={{ color: "orange", cursor: "pointer" }}
+          onClick={() => {
+            history.push("/earn");
+          }}
+        >
+          Buy/Sell Send Receive
+        </span>{" "}
+        ...
       </TableCell>
     </TableRow>
   );

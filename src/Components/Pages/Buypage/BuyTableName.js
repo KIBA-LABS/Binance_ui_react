@@ -28,7 +28,7 @@ function BuyTableName(props) {
           </Row>
         </Col>
         <Col xs={3}>
-          {props.data.max_supply} <span style={{ fontSize: "10px" }}>CNY</span>
+          {props.price} <span style={{ fontSize: "10px" }}>CNY</span>
         </Col>
         <Col xs={3}>
           <Row>
@@ -68,7 +68,8 @@ function BuyTableName(props) {
             style={{
               width: "130px",
               fontSize: "15px",
-              backgroundColor: "#0DD005",
+              backgroundColor: "#98FB98",
+              color: "black",
             }}
           >
             Buy BTC

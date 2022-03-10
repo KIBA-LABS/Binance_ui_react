@@ -22,21 +22,43 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+
   paper: {
     padding: theme.spacing(6),
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
+  indicator: {
+    backgroundColor: "yellow",
+  },
+  form: {
+    width: "150px",
+    height: "30px",
+    marginLeft: "20px",
+    marginTop: "8px",
+  },
+  Row: {
+    backgroundColor: "#F9F9F9",
+    height: "40px",
+    marginLeft: "70px",
+    marginRight: "50px",
+  },
+  formSelect: {
+    width: "150px",
+    height: "30px",
+    marginLeft: "90px",
+    marginTop: "8px",
+  },
 }));
 const tabStyle = {
   default_tab: {
-    color: "white",
+    color: "yellow",
     width: "33.3%",
 
     fontSize: 15,
   },
   active_tab: {
-    color: "white",
+    color: "yellow",
     width: "33.3%",
 
     fontSize: 15,
@@ -66,6 +88,7 @@ function Buypage() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
+    console.log(newValue);
     setValue(newValue);
   };
   useEffect(() => {
@@ -98,8 +121,11 @@ function Buypage() {
             value={value}
             onChange={handleChange}
             aria-label="simple tabs example"
-            style={{ color: "white", height: "45px" }}
-            TabIndicatorProps={{ style: { backgroundColor: "yellow" } }}
+            style={{ height: "45px", color: "white" }}
+            TabIndicatorProps={{
+              style: { backgroundColor: "yellow" },
+            }}
+            classes={{ indicator: classes.indicator }}
           >
             <Tab
               label="Express"
@@ -199,29 +225,13 @@ function Buypage() {
         </Row>
 
         <Col xs={2}>
-          <Form.Select
-            size="sm"
-            style={{
-              width: "150px",
-              height: "30px",
-              marginLeft: "90px",
-              marginTop: "8px",
-            }}
-          >
+          <Form.Select size="sm" class name="formSelect">
             <option>CNY</option>
             <option value="1">INR </option>
           </Form.Select>
         </Col>
         <Col xs={2}>
-          <Form.Select
-            size="sm"
-            style={{
-              width: "150px",
-              height: "30px",
-              marginLeft: "20px",
-              marginTop: "8px",
-            }}
-          >
+          <Form.Select class name="form" size="sm">
             <option>All payments</option>
             <option value="1">INR </option>
           </Form.Select>
@@ -234,14 +244,7 @@ function Buypage() {
           backgroundColor: "white",
         }}
       >
-        <Row
-          style={{
-            backgroundColor: "#F9F9F9",
-            height: "40px",
-            marginLeft: "70px",
-            marginRight: "50px",
-          }}
-        >
+        <Row class name="Row">
           <Col xs={2}>Advertiser</Col>
           <Col xs={3}>Price</Col>
           <Col xs={3}>Limit/Available</Col>

@@ -15,11 +15,22 @@ function Earn() {
   const [tableDatas, setList] = React.useState(initialList);
 
   const fetchHistory = async () => {
-    const { data } = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=20&page=1&sparkline=false"
-    );
-    console.log(data);
-    setList(data);
+    const response = await axios
+      .get("https://rest.coinapi.io/v1/exchangerate/BTC?invert=false", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "X-CoinAPI-Key": "DFB818A1-D5BC-448A-91DF-60699FD82AE6",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    // console.log(data);
+    // setList(data);
   };
   useEffect(() => {
     fetchHistory();
@@ -118,7 +129,7 @@ function Earn() {
               </ul>
             </Row>
           </Col>
-          <Col xs={6}>
+          <Col xs={6} style={{ alignSelf: "start", marginTop: "18px" }}>
             {" "}
             <CryptoGraph></CryptoGraph>
           </Col>
@@ -163,10 +174,10 @@ function Earn() {
                   return (
                     <li>
                       <Row>
-                        <Col xs={4}>{value.Price}</Col>
-                        <Col xs={4}>{value.Amount}</Col>
+                        <Col xs={4}>{value.low_24h}</Col>
+                        <Col xs={4}>{value.ath}</Col>
                         <Col xs={4} style={{ color: "green" }}>
-                          {value.Time}
+                          {value.last_updated}
                         </Col>
                       </Row>
                     </li>

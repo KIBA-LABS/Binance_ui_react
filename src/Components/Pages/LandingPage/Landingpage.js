@@ -7,7 +7,7 @@ import AccessibilityIcon from "@material-ui/icons/Accessibility";
 //import { Icon } from "@material-ui/core";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import Coinvaluecomponent from "./Coinvaluecomponent";
-import Imageviewcomponent from "./Imageviewcomponent";
+import Imageviewcomponent from "./ImageViewComponent";
 import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
 import { useEffect } from "react";
@@ -90,85 +90,6 @@ function Landingpage() {
       id: "D",
     },
   ];
-  // const tableRows = [
-  //   {
-  //     Name: "BNB",
-  //     LastPrice: "368.65",
-  //     Change: "-3.15%%",
-  //     Markets: [
-  //       45, 76, 678, 89, 23, 46, 45, 76, 678, 89, 23, 46, 45, 76, 678, 89, 23,
-  //       46,
-  //     ],
-  //     id: "11",
-  //     image: "bnb.png",
-  //     subTitle: "BNB",
-  //   },
-  //   {
-  //     Name: "Btc",
-  //     LastPrice: "$37,013.38",
-  //     Change: "-3.21%%",
-  //     Markets: [
-  //       14, 23, 2, 5, 656, 32, 4, 9, 65, 23, 45, 8, 22, 45, 9, 56, 34, 2,
-  //     ],
-  //     id: "12",
-  //     image: "bitcoin.png",
-  //     subTitle: "Bitcoin",
-  //   },
-  //   {
-  //     Name: "ETH",
-  //     LastPrice: "$2,663.46",
-  //     Change: "-3.10%%",
-  //     Markets: [
-  //       2, 5, 89, 21, 56, 98, 45, 12, 34, 89, 53, 45, 576, 78, 323, 66, 78, 92,
-  //       54,
-  //     ],
-  //     id: "13",
-  //     image: "ethereum.png",
-  //     subTitle: "Ethereum",
-  //   },
-  //   {
-  //     Name: "LUNA",
-  //     LastPrice: "$48.29",
-  //     Change: "-3.15%%",
-  //     Markets: [
-  //       12, 89, 64, 34, 23, 89, 53, 99, 33, 12, 1, 2, 78, 9, 5, 34, 576,
-  //     ],
-  //     id: "14",
-  //     image: "coin.png",
-  //     subTitle: "Terra",
-  //   },
-  //   {
-  //     Name: "ADA",
-  //     LastPrice: "$1.04",
-  //     Change: "-2.53%",
-  //     Markets: [
-  //       33, 54, 88, 12, 67, 98, 45, 23, 13, 56, 89, 65, 34, 23, 45, 12, 98, 76,
-  //     ],
-  //     id: "15",
-  //     image: "cardano.png",
-  //     subTitle: "Cardano",
-  //   },
-  //   {
-  //     Name: "SOL",
-  //     LastPrice: "$98.94",
-  //     Change: "-8.93%",
-  //     Markets: [
-  //       78, 65, 34, 23, 12, 98, 6, 4, 45, 34, 23, 8, 9, 5, 3, 45, 78, 12, 78,
-  //     ],
-  //     id: "16",
-  //     image: "solana.png",
-  //     subTitle: "Solana",
-  //   },
-  //   {
-  //     Name: "SHIB",
-  //     LastPrice: "$0.000021",
-  //     Change: "-3.45%",
-  //     Markets: [12, 45, 78, 54, 67, 34, 56, 78, 86, 43, 32, 12, 46, 6787],
-  //     id: "17",
-  //     image: "shiba-inu.png",
-  //     subTitle: "SHIB INU",
-  //   },
-  // ];
 
   return (
     <div>

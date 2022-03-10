@@ -219,7 +219,10 @@ function Orders() {
               style={{
                 backgroundColor: "#F4F6F6",
                 height: "40px",
-                margin: "auto",
+                marginLeft: "-3px",
+                marginRight: "0px",
+                fontWeight: "bold",
+                fontSize: "14px",
               }}
             >
               <Col xs={2} style={{ alignSelf: "center" }}>
