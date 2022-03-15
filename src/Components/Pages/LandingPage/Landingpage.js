@@ -1,4 +1,5 @@
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Box, Button, Grid, Typography } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
 import React, { useState } from "react";
 //import Coinvaluecomponent from "./LandingPage/Coinvaluecomponent";
 //import Imageviewcomponent from "./LandingPage/Imageviewcomponent";
@@ -23,21 +24,25 @@ import {
 import { Paper } from "@material-ui/core";
 //import TradeAnywhere from "./LandingPage/TradeAnywhere";
 import TradeAnywhere from "./TradeAnywhere";
+import Search from "../Fundingpage/Search";
 function Landingpage() {
   //const classes = useStyles();
   const initialList = [];
   const [tableDatas, setList] = React.useState(initialList);
+  const [pagination, setPagination] = useState(1);
+  const [searchInput, setSearchInput] = useState("");
 
   const fetchHistory = async () => {
     const { data } = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=10&page=${pagination}&sparkline=false`
     );
+
     console.log(data);
     setList(data);
   };
   useEffect(() => {
     fetchHistory();
-  }, []);
+  }, [pagination, searchInput]);
 
   const coinValueDatas = [
     {
@@ -90,6 +95,16 @@ function Landingpage() {
       id: "D",
     },
   ];
+
+  const handlePagination = (event, page) => {
+    setPagination(page);
+    console.log("pagnation: ", page);
+  };
+
+  const handleSearch = (event) => {
+    console.log("values: ", event.target.value);
+    setSearchInput(event.target.value);
+  };
 
   return (
     <div>
@@ -215,7 +230,15 @@ function Landingpage() {
               Market trend
             </Typography>
           </div>
-          <div style={{ margin: "100px", marginTop: "40px" }}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            style={{ margin: "100px", marginTop: "40px" }}
+          >
+            <Box mb={3} alignSelf="start" width="400px">
+              <Search onChange={handleSearch} />
+            </Box>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: "650" }} aria-label="simple table">
                 <TableHead>
@@ -255,7 +278,15 @@ function Landingpage() {
                 </TableBody>
               </Table>
             </TableContainer>
-          </div>
+            <Box mt={3}>
+              <Pagination
+                count={500}
+                color="primary"
+                page={pagination}
+                onChange={handlePagination}
+              />
+            </Box>
+          </Box>
         </section>
       </Grid>
       <div>

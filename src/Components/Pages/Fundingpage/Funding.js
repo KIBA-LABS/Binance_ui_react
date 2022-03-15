@@ -120,7 +120,6 @@ function Funding() {
               <span style={{ color: "grey" }}> ~ $347.73</span>
             </h4>
           </Col>
-       
         </Row>
         <Row>
           <Col xs={3}>
@@ -145,7 +144,6 @@ function Funding() {
           <Col>
             <TableContainer>
               <Table
-                
                 style={{ width: "90%", marginTop: "10px", marginLeft: "50px" }}
               >
                 <TableHead>
