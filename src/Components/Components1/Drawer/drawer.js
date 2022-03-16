@@ -72,7 +72,6 @@ function drawer() {
           </ListItemIcon>
           <ListItemText primary="Vanilla Option" />
         </ListItem>
-
         <ListItem button>
           <ListItemIcon>
             <GroupWorkIcon />

@@ -5,22 +5,16 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import AppsIcon from "@material-ui/icons/Apps";
 import { Box } from "@material-ui/core";
-
 import { useHistory } from "react-router-dom";
-import Landingpage from "../../Pages/LandingPage/Landingpage";
-
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -172,7 +166,6 @@ function Navbar() {
             onClick={() => {
               history.push("/");
             }}
-            // onClick={handleDrawerOpen}
           ></img>{" "}
           &nbsp; &nbsp; &nbsp;
           <AppsIcon style={{ cursor: "pointer" }} />
@@ -212,10 +205,6 @@ function Navbar() {
             Trade
           </Typography>{" "}
           &nbsp; &nbsp;
-          {/* <Typography varient="body2" style={{ cursor: "pointer" }}>
-            Derivatives
-          </Typography>{" "}
-          &nbsp; &nbsp; */}
           <Typography
             varient="body2"
             style={{ cursor: "pointer" }}
@@ -236,23 +225,6 @@ function Navbar() {
             Finance
           </Typography>{" "}
           &nbsp; &nbsp;
-          {/* <Typography varient="body2" style={{ cursor: "pointer" }}>
-            NFT
-          </Typography>{" "}
-          &nbsp; &nbsp; */}
-          {/* <Box
-            className="arrow"
-            component="span"
-            color="black"
-            style={{
-              backgroundColor: "#fcd535",
-              textAlign: "center",
-              fontSize: "13px",
-              cursor: "pointer",
-            }}
-          >
-            New
-          </Box>{" "} */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <div style={{ margin: "auto", display: "flex" }}>
@@ -265,11 +237,7 @@ function Navbar() {
               >
                 Log in
               </Typography>{" "}
-              &nbsp; &nbsp;
-              {/* <Typography varient="body2" style={{ cursor: "pointer" }}>
-                Register
-              </Typography>{" "} */}
-              &nbsp; &nbsp;
+              &nbsp; &nbsp; &nbsp; &nbsp;
               <Typography varient="body2" style={{ cursor: "pointer" }}>
                 Wallet
               </Typography>{" "}
@@ -284,24 +252,9 @@ function Navbar() {
                 Orders
               </Typography>
               &nbsp; &nbsp;
-              {/* 
-              <AccountCircle /> */}
             </div>
 
-            {/* <IconButton
-              aria-label="show 17 new notifications"
-              color="inherit"
-              style={{ cursor: "pointer" }}
-            >
-              <Badge badgeContent={23} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
-
             <div style={{ margin: "auto", display: "flex", cursor: "pointer" }}>
-              {/* <Typography varient="body2">Downloads</Typography> &nbsp; &nbsp;
-              <Typography varient="body2">English</Typography> &nbsp; &nbsp;
-              <Typography varient="body2">| USD |</Typography> &nbsp; &nbsp; */}
               <img
                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABZElEQVRIie3WMUscQRyG8Z/RRNJEIRJLEWwSIyiENBpSiIKNTSBd6iB+DsU6TVL4ARSsDGgTy5BCUphKLRXEQoNIGlE5i7kFGde9XW9OUvjAv9hhdp55d2d3hgf+MybxGxv3JXyKRdTqtXkf0i78uiat4VOrpU/wM5Ke4VmrxV8iaU14xy3lDS5zxCspJY9y2uZuaT9LKY7pl5+2hh8pRXGy6Zy2jL6U4phl+WmzGkglitM1SvUxlThmR3HiI3SnEMWJTxv0f46FFOKYVcWJs5ppVtQeXY9gtMR9UzgXfqtJGFMucVbreF1i3MeYEDaeXNpxUFF+gTV8xhB60IFejAtrYr/ed75odrMVxVXqXaPHstsC6VKRNGMY/xJK94RPsRQfhJXbrPQQr8pKMybxtwnpNl5WlWYM4HtF4QW+SXRUei/sXqcFwhN8xWCjwdruMIFOvBV2shf1MY6xhT/CQeKBG1wBLlPcyf97PBwAAAAASUVORK5CYII="
                 style={{ height: "20px" }}

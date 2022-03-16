@@ -31,6 +31,12 @@ function Landingpage() {
   const [tableDatas, setList] = React.useState(initialList);
   const [pagination, setPagination] = useState(1);
   const [searchInput, setSearchInput] = useState("");
+  const [inputName, setName] = useState("");
+  const [items, setItems] = useState([]);
+  const nameEvent = (event) => {
+    console.log(event.target.value);
+    setName(event.target.value);
+  };
 
   const fetchHistory = async () => {
     const { data } = await axios.get(
@@ -237,7 +243,8 @@ function Landingpage() {
             style={{ margin: "100px", marginTop: "40px" }}
           >
             <Box mb={3} alignSelf="start" width="400px">
-              <Search onChange={handleSearch} />
+              {/* <Search onChange={handleSearch} /> */}
+              <input type="text" data="name" onChange={nameEvent}></input>
             </Box>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: "650" }} aria-label="simple table">
@@ -270,11 +277,20 @@ function Landingpage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {tableDatas.map((viewTable) => {
-                    return (
-                      <Tablerow key={viewTable.alt} data={viewTable}></Tablerow>
-                    );
-                  })}
+                  {tableDatas
+                    .filter((currency) => {
+                      console.log("data=" + currency.name);
+                      var name = currency.name.toLowerCase();
+                      return name.startsWith(inputName.toLowerCase());
+                    })
+                    .map((viewTable) => {
+                      return (
+                        <Tablerow
+                          key={viewTable.alt}
+                          data={viewTable}
+                        ></Tablerow>
+                      );
+                    })}
                 </TableBody>
               </Table>
             </TableContainer>

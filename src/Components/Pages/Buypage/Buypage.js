@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@material-ui/core";
 
 import { Tabs, Tab } from "@material-ui/core";
-import { useState } from "@material-ui/core/styles";
+//import { useState } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -12,6 +12,10 @@ import BuyTableName from "./BuyTableName";
 import Form from "react-bootstrap/Form";
 import { useEffect } from "react";
 import axios from "axios";
+import { Pagination } from "@material-ui/lab";
+import { useState } from "react";
+import { Box } from "@material-ui/core";
+
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -75,10 +79,18 @@ function Buypage() {
   const classes = useStyles();
   const initialList = [];
   const [tableDatas, setList] = React.useState(initialList);
+  const [pagination, setPagination] = useState(1);
+  const [searchInput, setSearchInput] = useState("");
+  const [inputName, setName] = useState("");
+  const [items, setItems] = useState([]);
+  const nameEvent = (event) => {
+    console.log(event.target.value);
+    setName(event.target.value);
+  };
 
   const fetchHistory = async () => {
     const { data } = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=10&page=${pagination}&sparkline=false`
     );
     console.log(data);
     setList(data);
@@ -93,7 +105,17 @@ function Buypage() {
   };
   useEffect(() => {
     fetchHistory();
-  }, []);
+  }, [pagination, searchInput]);
+  const handlePagination = (event, page) => {
+    setPagination(page);
+    console.log("pagnation: ", page);
+  };
+
+  const handleSearch = (event) => {
+    console.log("values: ", event.target.value);
+    setSearchInput(event.target.value);
+  };
+
   return (
     <div
       style={{
@@ -223,6 +245,10 @@ function Buypage() {
         <Row style={{ marginLeft: "90px" }}>
           Flat<Col style={{ marginLeft: "180px" }}>Payment</Col>
         </Row>
+        <Col xs={2}>
+          {" "}
+          <input type="text" data="name" onChange={nameEvent}></input>
+        </Col>
 
         <Col xs={2}>
           <Form.Select size="sm" class name="formSelect">
@@ -253,14 +279,28 @@ function Buypage() {
         </Row>
       </div>
       <ul id="list" style={{ listStyle: "none" }}>
-        {tableDatas.map((value) => {
-          return (
-            <li key={value.id}>
-              <BuyTableName data={value}></BuyTableName>
-            </li>
-          );
-        })}
+        {tableDatas
+          .filter((currency) => {
+            console.log("data=" + currency.name);
+            var name = currency.name.toLowerCase();
+            return name.startsWith(inputName.toLowerCase());
+          })
+          .map((value) => {
+            return (
+              <li key={value.id}>
+                <BuyTableName data={value}></BuyTableName>
+              </li>
+            );
+          })}
       </ul>
+      <Box mt={3}>
+        <Pagination
+          count={500}
+          color="primary"
+          page={pagination}
+          onChange={handlePagination}
+        />
+      </Box>
     </div>
   );
 }
