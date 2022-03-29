@@ -2,23 +2,32 @@ import React from "react";
 import { Row, Rows, Col } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-function BuyTableName(props) {
-  return (
-    <div
-      style={{
-        backgroundColor: "white",
-        borderBottom: "1px solid #EDEDED",
-      }}
-    >
-      <Row
-        style={{
-          backgroundColor: "white",
-          height: "80px",
+import { makeStyles } from "@material-ui/core/styles";
 
-          marginLeft: "50px",
-          marginRight: "50px",
-        }}
-      >
+const useStyles = makeStyles((theme) => ({
+  button: {
+    width: "130px",
+    fontSize: "15px",
+    backgroundColor: "#98FB98",
+    color: "black",
+  },
+  row: {
+    backgroundColor: "white",
+    height: "80px",
+
+    marginLeft: "50px",
+    marginRight: "50px",
+  },
+  main: {
+    backgroundColor: "white",
+    borderBottom: "1px solid #EDEDED",
+  },
+}));
+function BuyTableName(props) {
+  const classes = useStyles();
+  return (
+    <div className={classes.main}>
+      <Row className={classes.row}>
         <Col xs={2}>
           <Row>
             <span style={{ color: "blue" }}>{props.data.Advertiser}</span>
@@ -63,15 +72,7 @@ function BuyTableName(props) {
           </span>
         </Col>
         <Col xs={1}>
-          <Button
-            variant="success"
-            style={{
-              width: "130px",
-              fontSize: "15px",
-              backgroundColor: "#98FB98",
-              color: "black",
-            }}
-          >
+          <Button variant="success" className={classes.button}>
             Buy BTC
           </Button>
         </Col>

@@ -1,24 +1,21 @@
 import { Checkbox, TableHead, Typography } from "@material-ui/core";
 import React from "react";
-//import Drawer from "../../Components1/Drawer/drawer";
-//import drawer from "../../Components1/Drawer/drawer";
+
 import Drawer from "../../Components1/Drawer/drawer";
 import { TableContainer } from "@material-ui/core";
 import { TableCell } from "@material-ui/core";
 import { TableBody } from "@material-ui/core";
-import { Paper } from "@material-ui/core";
+
 import { Table } from "@material-ui/core";
-import { TableFooter } from "@material-ui/core";
+
 import { Row, Col, Button, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { Pagination } from "@material-ui/lab";
-
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { TableRow } from "@material-ui/core";
 import Tablerow from "../TableviewPage/Tablerow";
-//import Search from "@material-ui/icons/Search";
-import ShopIcon from "@material-ui/icons/Shop";
-import Search from "./Search";
+
 import { makeStyles } from "@material-ui/styles";
 import { Box } from "@material-ui/core";
 import { useEffect } from "react";
@@ -49,6 +46,7 @@ function Funding() {
   const [searchInput, setSearchInput] = useState("");
   const [inputName, setName] = useState("");
   const [items, setItems] = useState([]);
+  const [sort, setSort] = useState("id_asc");
   const nameEvent = (event) => {
     console.log(event.target.value);
     setName(event.target.value);
@@ -56,14 +54,14 @@ function Funding() {
 
   const fetchHistory = async () => {
     const { data } = await axios.get(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=10&page=${pagination}&sparkline=false`
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=${sort}&per_page=10&page=${pagination}&sparkline=false`
     );
     console.log(data);
     setList(data);
   };
   useEffect(() => {
     fetchHistory();
-  }, [pagination, searchInput]);
+  }, [pagination, searchInput, sort]);
   const handlePagination = (event, page) => {
     setPagination(page);
     console.log("pagnation: ", page);
@@ -72,6 +70,10 @@ function Funding() {
   const handleSearch = (event) => {
     console.log("values: ", event.target.value);
     setSearchInput(event.target.value);
+  };
+  const handleSort = () => {
+    console.log("Sorting");
+    setSort("id_desc");
   };
   return (
     <Row style={{ marginTop: "25px" }}>
@@ -169,8 +171,17 @@ function Funding() {
               >
                 <TableHead>
                   <TableRow>
-                    <TableCell style={{ color: "gray", borderBottom: "none" }}>
+                    <TableCell
+                      style={{
+                        color: "gray",
+                        borderBottom: "none",
+                        display: "inline",
+                      }}
+                    >
                       Assets
+                      <ArrowDropDownIcon
+                        onClick={handleSort}
+                      ></ArrowDropDownIcon>
                     </TableCell>
                     <TableCell
                       align="right"
@@ -225,14 +236,21 @@ function Funding() {
                 </TableBody>
               </Table>
             </TableContainer>
-            <Box mt={3}>
+            <div
+              style={{
+                margin: "20px 0px 40px 0px",
+                textAlign: "-webkit-center",
+                paddingBottom: "20px",
+              }}
+            >
               <Pagination
                 count={500}
                 color="primary"
+                style={{ width: "400px" }}
                 page={pagination}
                 onChange={handlePagination}
               />
-            </Box>
+            </div>
           </Col>
         </Row>
       </Col>

@@ -1,17 +1,19 @@
 import { Box, Button, Grid, Typography } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import React, { useState } from "react";
-//import Coinvaluecomponent from "./LandingPage/Coinvaluecomponent";
-//import Imageviewcomponent from "./LandingPage/Imageviewcomponent";
+
 import Tablerow from "../TableviewPage/Tablerow";
 import AccessibilityIcon from "@material-ui/icons/Accessibility";
-//import { Icon } from "@material-ui/core";
+
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import Coinvaluecomponent from "./Coinvaluecomponent";
 import Imageviewcomponent from "./ImageViewComponent";
 import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useEffect } from "react";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import Slider from "react-styled-carousel";
 
 import {
   TableCell,
@@ -22,17 +24,21 @@ import {
   TableRow,
 } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
-//import TradeAnywhere from "./LandingPage/TradeAnywhere";
+
 import TradeAnywhere from "./TradeAnywhere";
-import Search from "../Fundingpage/Search";
+import { Row, Col } from "react-bootstrap";
+
 function Landingpage() {
+  const [isAscending, setAscending] = useState(true);
   //const classes = useStyles();
   const initialList = [];
   const [tableDatas, setList] = React.useState(initialList);
   const [pagination, setPagination] = useState(1);
+  const [sort, setSort] = useState("id_asc");
   const [searchInput, setSearchInput] = useState("");
   const [inputName, setName] = useState("");
   const [items, setItems] = useState([]);
+
   const nameEvent = (event) => {
     console.log(event.target.value);
     setName(event.target.value);
@@ -40,7 +46,7 @@ function Landingpage() {
 
   const fetchHistory = async () => {
     const { data } = await axios.get(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=10&page=${pagination}&sparkline=false`
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=${sort}&per_page=10&page=${pagination}&sparkline=false`
     );
 
     console.log(data);
@@ -48,7 +54,7 @@ function Landingpage() {
   };
   useEffect(() => {
     fetchHistory();
-  }, [pagination, searchInput]);
+  }, [pagination, searchInput, sort]);
 
   const coinValueDatas = [
     {
@@ -100,6 +106,26 @@ function Landingpage() {
       image: "image2.jfif",
       id: "D",
     },
+    {
+      image: "image2.jfif",
+      id: "E",
+    },
+    {
+      image: "image4.jfif",
+      id: "F",
+    },
+    {
+      image: "image4.jfif",
+      id: "G",
+    },
+    {
+      image: "image4.jfif",
+      id: "H",
+    },
+    {
+      image: "image4.jfif",
+      id: "I",
+    },
   ];
 
   const handlePagination = (event, page) => {
@@ -111,13 +137,26 @@ function Landingpage() {
     console.log("values: ", event.target.value);
     setSearchInput(event.target.value);
   };
+  const handleSortAsc = () => {
+    console.log("Sorting");
+    setSort("id_asc");
+    setAscending(true);
+  };
+
+  const handleSortDesc = () => {
+    console.log("Sorting");
+    setSort("id_desc");
+    setAscending(false);
+  };
 
   return (
     <div>
       <Grid>
         <section>
-          <h1 style={{ marginLeft: "100px" }}>Make your first trade</h1>
-          <h5 style={{ marginLeft: "100px" }}>
+          <h1 style={{ marginLeft: "100px", color: "#03B0BE" }}>
+            Make your first trade
+          </h1>
+          <h5 style={{ marginLeft: "100px", color: "#334D86" }}>
             Trade more than 750 cryptocurrency and flat pairs,including
             Bitcoin,Ethereum,and BNB with<br></br>Binance Spot
           </h5>
@@ -158,14 +197,16 @@ function Landingpage() {
               marginBottom: "20px",
             }}
           >
-            {imageViewPictures.map((view) => {
-              return (
-                <Imageviewcomponent
-                  key={view.id}
-                  data={view}
-                ></Imageviewcomponent>
-              );
-            })}
+            <Slider cardsToShow="4">
+              {imageViewPictures.map((view) => {
+                return (
+                  <Imageviewcomponent
+                    key={view.id}
+                    data={view}
+                  ></Imageviewcomponent>
+                );
+              })}
+            </Slider>
           </div>
           <div>
             <Typography>
@@ -182,7 +223,7 @@ function Landingpage() {
                   style={{ verticalAlign: "middle", marginRight: "10px" }}
                 />
                 Binance Secure Assest Fund for Users(SAFU) Valued at $1BN 01-31
-                &nbsp; &nbsp; | More
+                &nbsp; &nbsp; | <span style={{ color: "#314E88" }}>More</span>
               </Typography>
               <Typography
                 style={{
@@ -200,7 +241,7 @@ function Landingpage() {
                 />
                 Special Notice about Binance.com in Singapur &nbsp; &nbsp;
               </Typography>
-              <Typography style={{ color: "#fcd535", display: "inline-block" }}>
+              <Typography style={{ color: "#314E88", display: "inline-block" }}>
                 More
               </Typography>
             </Typography>
@@ -220,7 +261,7 @@ function Landingpage() {
               />
               Special Notice about Binance Markets Limited &nbsp; &nbsp;
             </Typography>
-            <Typography style={{ color: "#fcd535", display: "inline-block" }}>
+            <Typography style={{ color: "#314E88", display: "inline-block" }}>
               More
             </Typography>
           </div>
@@ -231,6 +272,7 @@ function Landingpage() {
                 fontSize: "40px",
                 marginTop: "40px",
                 marginBottom: "40px",
+                color: "#03B0C0",
               }}
             >
               Market trend
@@ -243,34 +285,73 @@ function Landingpage() {
             style={{ margin: "100px", marginTop: "40px" }}
           >
             <Box mb={3} alignSelf="start" width="400px">
-              {/* <Search onChange={handleSearch} /> */}
+              {/* {/ <Search onChange={handleSearch} /> /} */}
               <input type="text" data="name" onChange={nameEvent}></input>
             </Box>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: "650" }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell style={{ color: "gray", borderBottom: "none" }}>
+                    <TableCell
+                      style={{
+                        color: "gray",
+                        borderBottom: "none",
+                        display: "flex",
+                      }}
                       Name
+                    >
+                      <Row>
+                        <Col>
+                          <span style={{ fontSize: "18px" }}>Name</span>
+                        </Col>
+                        <Col>
+                          <Row>
+                            {!isAscending ? (
+                              <ArrowDropUpIcon
+                                style={{ width: "50px", height: "20px" }}
+                                onClick={handleSortAsc}
+                              ></ArrowDropUpIcon>
+                            ) : null}
+                          </Row>
+                          <Row>
+                            {isAscending ? (
+                              <ArrowDropDownIcon
+                                style={{ width: "50px", height: "20px" }}
+                                disabled={true}
+                                onClick={handleSortDesc}
+                              ></ArrowDropDownIcon>
+                            ) : null}
+                          </Row>
+                        </Col>
+                      </Row>
                     </TableCell>
                     <TableCell
                       align="right"
                       style={{
                         color: "gray",
                         borderBottom: "none",
+                        fontSize: "18px",
                       }}
                     >
                       Last Price
                     </TableCell>
                     <TableCell
                       align="right"
-                      style={{ color: "gray", borderBottom: "none" }}
+                      style={{
+                        color: "gray",
+                        borderBottom: "none",
+                        fontSize: "18px",
+                      }}
                     >
                       24h Change
                     </TableCell>
                     <TableCell
                       align="right"
-                      style={{ color: "gray", borderBottom: "none" }}
+                      style={{
+                        color: "gray",
+                        borderBottom: "none",
+                        fontSize: "18px",
+                      }}
                     >
                       Markets
                     </TableCell>

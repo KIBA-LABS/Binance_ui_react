@@ -90,33 +90,42 @@ const CoinTable = () => {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <input type="text" data="name" onChange={nameEvent}></input>
-      <div style={{ marginLeft: "70px", marginRight: "105px" }}>
-        <ul id="list" style={{ listStyle: "none" }}>
-          {tableDatas
-            .filter((currency) => {
-              console.log("data=" + currency.name);
-              var name = currency.name.toLowerCase();
-              return name.startsWith(inputName.toLowerCase());
-            })
-            .map((value) => {
-              return (
-                <li key={value.id}>
-                  <OrderTableRow2 data={value}></OrderTableRow2>
-                </li>
-              );
-            })}
-        </ul>
+    <ThemeProvider>
+      {/* <input type="text" data="name" onChange={nameEvent}></input> */}
+      <div>
+        <div style={{ marginLeft: "70px", marginRight: "105px" }}>
+          <ul id="list" style={{ listStyle: "none" }}>
+            {tableDatas
+              .filter((currency) => {
+                console.log("data=" + currency.name);
+                var name = currency.name.toLowerCase();
+                return name.startsWith(inputName.toLowerCase());
+              })
+              .map((value) => {
+                return (
+                  <li key={value.id}>
+                    <OrderTableRow2 data={value}></OrderTableRow2>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+        <div
+          style={{
+            margin: "20px 0px 40px 0px",
+            textAlign: "-webkit-center",
+            paddingBottom: "20px",
+          }}
+        >
+          <Pagination
+            count={500}
+            color="primary"
+            style={{ width: "400px" }}
+            page={pagination}
+            onChange={handlePagination}
+          />
+        </div>
       </div>
-      <Box mt={3}>
-        <Pagination
-          count={500}
-          color="primary"
-          page={pagination}
-          onChange={handlePagination}
-        />
-      </Box>
     </ThemeProvider>
   );
 };

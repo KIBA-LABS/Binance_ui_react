@@ -1,10 +1,7 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import { Card, CardContent } from "@material-ui/core";
+
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -15,10 +12,7 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import GroupWorkIcon from "@material-ui/icons/GroupWork";
-import CallMadeIcon from "@material-ui/icons/CallMade";
-import SpeakerNotesOffIcon from "@material-ui/icons/SpeakerNotesOff";
-import ExtensionIcon from "@material-ui/icons/Extension";
-import AllInboxIcon from "@material-ui/icons/AllInbox";
+
 function drawer() {
   return (
     <Drawer variant="permanent" style={{ marginTop: "70px" }}>

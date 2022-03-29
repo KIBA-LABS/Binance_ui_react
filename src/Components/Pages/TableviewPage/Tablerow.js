@@ -26,10 +26,14 @@ function Tablerow(props) {
         align="right"
         style={{ borderBottom: "none", fontSize: "18px" }}
       >
+        <spam>$</spam>
         {props.data.market_cap}
       </TableCell>
-      <TableCell align="right">{props.data.price_change_24h}</TableCell>
       <TableCell align="right" style={{ borderBottom: "none" }}>
+        {props.data.price_change_24h}
+      </TableCell>
+      <TableCell align="right" style={{ borderBottom: "none" }}>
+        <spam>$</spam>
         {props.data.total_supply}
       </TableCell>
       <TableCell align="right" style={{ borderBottom: "none" }}>
@@ -40,7 +44,7 @@ function Tablerow(props) {
       </TableCell> */}
       <TableCell align="right" style={{ borderBottom: "none" }}>
         <span
-          style={{ color: "orange", cursor: "pointer" }}
+          style={{ color: "#324D8A", cursor: "pointer" }}
           onClick={() => {
             history.push("/earn");
           }}

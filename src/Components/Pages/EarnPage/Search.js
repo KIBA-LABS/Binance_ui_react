@@ -1,6 +1,6 @@
 import React from "react";
 import InputBase from "@material-ui/core/InputBase";
-import { alpha, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
@@ -8,12 +8,10 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     borderRadius: "20px",
     backgroundColor: "#e8e0eb",
-
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
-      //width: "30%",
     },
   },
   searchIcon: {

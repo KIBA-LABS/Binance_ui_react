@@ -10,6 +10,7 @@ import CoinTable from "./CoinTable";
 import Form from "react-bootstrap/Form";
 
 function a11yProps(index) {
+  const classes = useStyle();
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
@@ -23,6 +24,38 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
     textAlign: "center",
     color: theme.palette.text.secondary,
+  },
+  form: {
+    width: "150px",
+    height: "30px",
+    marginLeft: "90px",
+    marginTop: "8px",
+  },
+  formtwo: {
+    width: "150px",
+    height: "30px",
+    marginLeft: "20px",
+    marginTop: "8px",
+  },
+  formthree: {
+    width: "150px",
+    height: "30px",
+    marginLeft: "20px",
+    marginTop: "8px",
+  },
+  formfour: {
+    width: "150px",
+    height: "30px",
+    marginLeft: "20px",
+    marginTop: "8px",
+  },
+  rowname: {
+    backgroundColor: "#F4F6F6",
+    height: "40px",
+    marginLeft: "-3px",
+    marginRight: "0px",
+    fontWeight: "8px",
+    fontSize: "18px",
   },
 }));
 const tabStyle = {
@@ -47,6 +80,7 @@ const tabStyle = {
 };
 
 function Orders() {
+  const classes = useStyles();
   const tableRows = [
     {
       Name: "BTC",
@@ -59,7 +93,7 @@ function Orders() {
       Action: "Buy/Sell Send Receive ...",
     },
   ];
-  const classes = useStyles();
+  // const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -68,52 +102,52 @@ function Orders() {
 
   return (
     <div style={{ backgroundColor: "#FF6F6" }}>
-      <div style={{ backgroundColor: "black", height: "45px" }}>
+      {/* <div style={{ backgroundColor: "black", height: "45px" }}>
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"
           style={{ color: "white", height: "45px" }}
           TabIndicatorProps={{ style: { backgroundColor: "yellow" } }}
-        >
-          <Tab
+        > */}
+      {/* <Tab
             label="Express"
             style={value === 0 ? tabStyle.active_tab : tabStyle.default_tab}
             {...a11yProps(0)}
             style={{ minWidth: "10px", marginLeft: "100px" }}
-          />
-          <Tab
+          /> */}
+      {/* <Tab
             label="P2P"
             style={value === 1 ? tabStyle.active_tab : tabStyle.default_tab}
             {...a11yProps(1)}
             style={{ minWidth: "10px" }}
-          />
-          <Tab
+          /> */}
+      {/* <Tab
             label="Video Tutorial"
             style={value === 2 ? tabStyle.active_tab : tabStyle.default_tab}
             {...a11yProps(2)}
             style={{ minWidth: "10px", marginLeft: "50%" }}
-          />
-          <Tab
+          /> */}
+      {/* <Tab
             label="Orders"
             style={value === 2 ? tabStyle.active_tab : tabStyle.default_tab}
             {...a11yProps(2)}
             style={{ minWidth: "10px" }}
-          />
-          <Tab
+          /> */}
+      {/* <Tab
             label="P2p UserCenter"
             style={value === 2 ? tabStyle.active_tab : tabStyle.default_tab}
             {...a11yProps(2)}
             style={{ minWidth: "10px" }}
-          />
-          <Tab
+          /> */}
+      {/* <Tab
             label="More"
             style={value === 2 ? tabStyle.active_tab : tabStyle.default_tab}
             {...a11yProps(2)}
             style={{ minWidth: "10px" }}
           />
-        </Tabs>
-      </div>
+        </Tabs> */}
+      {/* </div> */}
       <Grid className="Container" style={{ background: "white" }}>
         <Tabs
           value={value}
@@ -148,57 +182,25 @@ function Orders() {
         </Row>
 
         <Col xs={2}>
-          <Form.Select
-            size="sm"
-            style={{
-              width: "150px",
-              height: "30px",
-              marginLeft: "90px",
-              marginTop: "8px",
-            }}
-          >
+          <Form.Select size="sm" className={classes.form}>
             <option>All coins</option>
             <option value="1">INR </option>
           </Form.Select>
         </Col>
         <Col xs={2}>
-          <Form.Select
-            size="sm"
-            style={{
-              width: "150px",
-              height: "30px",
-              marginLeft: "20px",
-              marginTop: "8px",
-            }}
-          >
+          <Form.Select size="sm" className={classes.formtwo}>
             <option>Buy/Sell</option>
             <option value="1">INR </option>
           </Form.Select>
         </Col>
         <Col xs={2}>
-          <Form.Select
-            size="sm"
-            style={{
-              width: "150px",
-              height: "30px",
-              marginLeft: "20px",
-              marginTop: "8px",
-            }}
-          >
+          <Form.Select size="sm" className={classes.formthree}>
             <option>All status</option>
             <option value="1">INR </option>
           </Form.Select>
         </Col>
         <Col xs={2}>
-          <Form.Select
-            size="sm"
-            style={{
-              width: "150px",
-              height: "30px",
-              marginLeft: "20px",
-              marginTop: "8px",
-            }}
-          >
+          <Form.Select size="sm" className={classes.formfour}>
             <option>2021-07-31 - 2022-01-31</option>
             <option value="1">INR </option>
           </Form.Select>
@@ -215,21 +217,12 @@ function Orders() {
               backgroundColor: "white",
             }}
           >
-            <Row
-              style={{
-                backgroundColor: "#F4F6F6",
-                height: "40px",
-                marginLeft: "-3px",
-                marginRight: "0px",
-                fontWeight: "bold",
-                fontSize: "14px",
-              }}
-            >
+            <Row className={classes.rowname}>
               <Col xs={2} style={{ alignSelf: "center" }}>
                 Types/Coins
               </Col>
               <Col xs={2} style={{ alignSelf: "center" }}>
-                Flat amount
+                Fiat amount
               </Col>
               <Col xs={2} style={{ alignSelf: "center" }}>
                 price

@@ -2,19 +2,15 @@ import React from "react";
 import { Row, Rows, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { map } from "highcharts";
-
 import CryptoGraph from "../Ethereumpage/CryptoGraph";
 import axios from "axios";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
-//import Search from "../Fundingpage/Search";
 import Search from "./Search";
 function Earn() {
-  //const classes = useStyles();
-  const initialList = [];
-  const [tableDatas, setList] = React.useState(initialList);
-
-  const fetchHistory = async () => {
+ const initialList = [];
+const [tableDatas, setList] = React.useState(initialList);
+ const fetchHistory = async () => {
     const response = await axios
       .get("https://rest.coinapi.io/v1/exchangerate/BTC?invert=false", {
         headers: {
@@ -28,9 +24,6 @@ function Earn() {
       .catch((error) => {
         console.log(error);
       });
-
-    // console.log(data);
-    // setList(data);
   };
   useEffect(() => {
     fetchHistory();

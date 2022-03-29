@@ -1,21 +1,14 @@
 import React from "react";
 import { Row, Rows, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "@material-ui/core";
-
 import { Tabs, Tab } from "@material-ui/core";
-//import { useState } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import BuyTableName from "./BuyTableName";
 import Form from "react-bootstrap/Form";
 import { useEffect } from "react";
 import axios from "axios";
 import { Pagination } from "@material-ui/lab";
 import { useState } from "react";
-import { Box } from "@material-ui/core";
-
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
@@ -44,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   Row: {
     backgroundColor: "#F9F9F9",
     height: "40px",
-    marginLeft: "70px",
+    marginLeft: "0px",
     marginRight: "50px",
   },
   formSelect: {
@@ -96,7 +89,6 @@ function Buypage() {
     setList(data);
   };
 
-  //const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -149,42 +141,42 @@ function Buypage() {
             }}
             classes={{ indicator: classes.indicator }}
           >
-            <Tab
+            {/* <Tab
               label="Express"
               style={value === 0 ? tabStyle.active_tab : tabStyle.default_tab}
               {...a11yProps(0)}
               style={{ minWidth: "10px", marginLeft: "5%" }}
-            />
-            <Tab
+            /> */}
+            {/* <Tab
               label="P2P"
               style={value === 1 ? tabStyle.active_tab : tabStyle.default_tab}
               {...a11yProps(1)}
               style={{ minWidth: "10px" }}
-            />
-            <Tab
+            /> */}
+            {/* <Tab
               label="Video Tutorial"
               style={value === 2 ? tabStyle.active_tab : tabStyle.default_tab}
               {...a11yProps(2)}
-              style={{ minWidth: "10px", marginLeft: "50%" }}
-            />
-            <Tab
+              s tyle={{ minWidth: "10px", marginLeft: "50%" }}
+            /> */}
+            {/* <Tab
               label="Orders"
               style={value === 2 ? tabStyle.active_tab : tabStyle.default_tab}
               {...a11yProps(2)}
               style={{ minWidth: "10px" }}
-            />
-            <Tab
+            /> */}
+            {/* <Tab
               label="P2p UserCenter"
               style={value === 2 ? tabStyle.active_tab : tabStyle.default_tab}
               {...a11yProps(2)}
               style={{ minWidth: "10px" }}
-            />
-            <Tab
+            /> */}
+            {/* <Tab
               label="More"
               style={value === 2 ? tabStyle.active_tab : tabStyle.default_tab}
               {...a11yProps(2)}
               style={{ minWidth: "10px" }}
-            />
+            /> */}
           </Tabs>
         </div>
       </div>
@@ -242,10 +234,10 @@ function Buypage() {
       </div>
 
       <Row>
-        <Row style={{ marginLeft: "90px" }}>
-          Flat<Col style={{ marginLeft: "180px" }}>Payment</Col>
+        <Row style={{ marginLeft: "400px" }}>
+          Fait<Col style={{ marginLeft: "180px" }}>Payment</Col>
         </Row>
-        <Col xs={2}>
+        <Col xs={2} style={{ marginLeft: "100px" }}>
           {" "}
           <input type="text" data="name" onChange={nameEvent}></input>
         </Col>
@@ -270,12 +262,26 @@ function Buypage() {
           backgroundColor: "white",
         }}
       >
-        <Row class name="Row">
-          <Col xs={2}>Advertiser</Col>
-          <Col xs={3}>Price</Col>
-          <Col xs={3}>Limit/Available</Col>
-          <Col xs={2}>Payment</Col>
-          <Col xs={2}>Trade</Col>
+        <Row
+          class
+          name="Row"
+          style={{ marginLeft: "80px", marginRight: "50px", marginTop: "20px" }}
+        >
+          <Col xs={2} style={{ fontSize: "17px" }}>
+            Advertiser
+          </Col>
+          <Col xs={3} style={{ fontSize: "17px" }}>
+            Price
+          </Col>
+          <Col xs={3} style={{ fontSize: "17px" }}>
+            Limit/Available
+          </Col>
+          <Col xs={2} style={{ fontSize: "17px" }}>
+            Payment
+          </Col>
+          <Col xs={2} style={{ fontSize: "17px" }}>
+            Trade
+          </Col>
         </Row>
       </div>
       <ul id="list" style={{ listStyle: "none" }}>
@@ -293,14 +299,21 @@ function Buypage() {
             );
           })}
       </ul>
-      <Box mt={3}>
+      <div
+        style={{
+          margin: "20px 0px 40px 0px",
+          textAlign: "-webkit-center",
+          paddingBottom: "20px",
+        }}
+      >
         <Pagination
           count={500}
           color="primary"
+          style={{ width: "400px" }}
           page={pagination}
           onChange={handlePagination}
         />
-      </Box>
+      </div>
     </div>
   );
 }

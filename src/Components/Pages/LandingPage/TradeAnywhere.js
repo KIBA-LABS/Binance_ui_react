@@ -10,7 +10,7 @@ const TradeAnywhere = () => {
         <Typography
           style={{
             marginLeft: "100px",
-            color: "black",
+            color: "#03B0BE",
             varient: "h1",
             height: "10px",
             marginTop: "20px",
@@ -25,7 +25,7 @@ const TradeAnywhere = () => {
         <Typography
           style={{
             marginLeft: "100px",
-            color: "gray",
+            color: "#374F8F",
             varient: "h3",
             height: "10px",
             marginTop: "50px",

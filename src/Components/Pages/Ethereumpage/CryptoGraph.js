@@ -117,11 +117,7 @@ function CryptoGraph() {
   };
   return (
     <div style={{ width: "100%", textAlign: "-webkit-right" }}>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        // style={{ marginLeft: "500px" }}
-      />
+      <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
 }
